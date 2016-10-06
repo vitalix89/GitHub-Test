@@ -1,0 +1,207 @@
+<html>
+<head>
+  <style>
+    #map_canvas {
+      width: 500px;
+      height: 500px;
+    }
+
+
+    #map {
+      width: 500px;
+      height: 500px;
+      float:right;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+
+
+
+  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-OaXYTpkxQ9CKVAYv5p-6Bc-Lr7U2Ic&callback=initMap">
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=geometry"></script>
+
+
+  <!--
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&libraries=place‌s"></script>
+  -->
+
+
+  <script>
+    var info;
+
+
+    function initMap() {
+      $(document).ready(function () {
+
+
+
+       // var connection = [];
+        var map;
+        var zap;
+        var elevator;
+        var myOptions = {
+          zoom: 1,
+          center: new google.maps.LatLng(0, 0),
+          mapTypeId: 'terrain'
+        };
+        map = new google.maps.Map($('#map_canvas')[0], myOptions);
+
+        zap = new google.maps.Map(document.getElementById('map'),
+                myOptions);
+
+        var addresses = ['Norway', 'Africa', 'Asia', 'North America', 'South Ameraica'];
+
+
+
+
+
+        var infoWindow = new google.maps.InfoWindow({map: map});
+
+        console.log(infoWindow)
+
+
+      //  var service = new google.maps.places.PlacesService(zap);
+       // service.nearbySearch(request,callback);
+
+
+
+
+        function callback(results, status) {
+          var markers = [];
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+            console.log(results)
+
+          /*  for (var i = 0; i < results.length; i++) {
+              markers.push(createMarker(results[i]));
+            }*/
+
+
+          }
+        }
+
+
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+
+
+              showPosition(position)
+
+            console.log(position);
+
+
+
+              var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+
+              infoWindow.setPosition(pos);
+              infoWindow.setContent('Location found.');
+              map.setCenter(pos);
+            }, function() {
+              handleLocationError(true, infoWindow, map.getCenter());
+            });
+          } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+          }
+        }
+
+        getLocation()
+
+
+
+
+        function showPosition(position) {
+          console.log("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
+
+
+          var connection = [{
+            lat: 31.804381,
+            long: 34.655314
+          },{
+            lat: 31.788877,
+            long: 34.756172
+          }];
+
+          //connection.push(coords)
+
+          console.log(connection);
+
+
+          for (var i = 0; i < connection.length; i++) {
+
+            $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng= ' + connection[i].lat + ' ,' + connection[i].long + ' &sensor=true', null, function (data) {
+
+            console.log(data)
+
+
+            var p = data.results[0].geometry.location
+            var latlng = new google.maps.LatLng(p.lat, p.lng);
+            new google.maps.Marker({
+              position: latlng,
+              map: map
+            });
+
+          });
+
+
+          // })
+        }
+
+        }
+
+
+
+
+
+        /*   var coords = [
+            // {lat:31.788877, long:34.756172},
+           //  {lat:31, long:34}
+           ]*/
+
+        var cubes = [
+          [31.788877, 34.756172],
+          [31, 34]
+        ];
+
+
+        for(var i = 0; i < cubes.length; i++) {
+          var cube = cubes[i];
+          for (var j = 0; j < cube.length; j++) {
+            $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng= latitude ,longtitude &sensor=true', null, function (data) {
+
+              console.log(cubes)
+
+
+              var p = data.results[0].geometry.location
+              var latlng = new google.maps.LatLng(p.lat, p.lng);
+              new google.maps.Marker({
+                position: latlng,
+                map: map
+              });
+
+            });
+
+            //  console.log(arrayItem.lat);
+            //});
+
+          }
+
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+<div id="map_canvas"></div>
+<div id="map"></div>
+
+</body>
+</html>

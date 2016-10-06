@@ -1,0 +1,562 @@
+/*[ng\:cloak], [ng-cloak], .ng-cloak {
+	display: none !important;
+}*/
+
+#chater{
+
+	position: fixed;
+	float: left;
+	right: 19px;
+	max-height: 17%;
+	height: 18%;
+	/* margin-top: 76px; */
+	bottom: 12px;
+}
+
+
+
+
+#chaterer{
+
+	position: fixed;
+	float: left;
+	right: 19px;
+	max-height: 17%;
+	height: 18%;
+	/* margin-top: 76px; */
+	bottom: 12px;
+}
+
+
+
+.inputM{
+
+	width: 231px;
+
+}
+
+.header{
+
+	position: absolute;
+	width: 231px;
+	height: 38px;
+	background-color: hsla(332, 95%, 25%, 0.59);
+	/* margin-top: -220px; */
+	left: -231px;
+	top: -198px;
+}
+
+
+.alert-message{
+
+
+	background-color: red;
+}
+
+
+
+.navbar-default .navbar-nav>li>a {
+	color: #fff;
+}
+
+
+
+
+
+
+.senders-list-wrapper{
+
+	/*width: 19%;
+	background-color: hsla(236, 100%, 94%, 0.6);
+	height: 18%;
+	position: absolute;
+	right: 8%;
+	top: 10%;
+	overflow-y: scroll;*/
+
+	background-color: whitesmoke;
+	height: 121px;
+	position: absolute;
+	right: 104px;
+	top: 61px;
+	overflow-y: scroll;
+	 z-index: 1;
+	/* display: block; */
+	width: 275px;
+	cursor: pointer;
+
+
+}
+
+
+.user_profile{
+
+	cursor: pointer;
+
+}
+
+.booble-chat-sender{
+
+
+	/*min-height: 41px;*/
+	min-width: 47px;
+	background-color: wheat;
+	float: right;
+	border: 1px transparent solid;
+	padding: 2px;
+	display: block;
+	margin-top: -15px;
+	margin-right: 9px;
+	border-radius: 12px;
+	word-wrap: break-word;
+	max-width:169px;
+	margin: 32px;
+	clear:left;
+
+}
+
+.booble-chat-reciever{
+
+	/*min-height: 41px;*/
+	min-width: 47px;
+	background-color: lightskyblue;
+	float: left;
+	border: 1px transparent solid;
+	padding: 2px;
+	display: block;
+	margin-top: -15px;
+	margin-right: 9px;
+	border-radius: 12px;
+	margin-left: 8px;
+	word-wrap: break-word;
+	max-width:169px;
+	margin: 32px;
+	clear:left;
+
+
+
+
+}
+
+
+
+
+.close{
+
+	position: absolute;
+	top: -191px;
+	left: -20px;
+}
+
+.button-send{
+
+	width: 231px;
+
+}
+
+
+
+
+.table-inverse{
+
+	position: absolute;
+	right: 4%;
+	top: 10%;
+
+}
+
+
+
+
+.off_message{
+
+	background-color:blue ;
+}
+
+
+#send_message{
+
+	position: absolute;
+	right: 1px;
+	top: 46px;
+}
+
+.got-message{
+
+	background-color:hsla(139, 100%, 70%, 0.81) ;
+
+
+}
+
+
+.alert-message{
+
+	background-color:red ;
+
+}
+
+
+
+.from{
+
+	background-color:#46b8da ;
+
+}
+
+
+.destroy{
+
+
+	display:none;
+}
+.appear{
+
+	padding: 0px;
+	margin-top: 76%;
+	position: absolute;
+	overflow: scroll;
+	bottom: 0;
+	width: 230px;
+	height: 191%;
+	background-color: #fffdfb;
+	right: 1%;
+	top: -32%;"
+}
+
+
+
+
+#chat{
+
+	list-style-type: none;
+	padding: 0px;
+	margin-top: 76%;
+	position: absolute;
+	overflow: scroll;
+	bottom: 0;
+	width: 230px;
+	height: 191%;
+	background-color: #fffdfb;
+	right: 1%;
+	top: -32%;
+
+
+}
+
+.online{
+
+	color:green;
+}
+
+.online2{
+
+	display: block;
+	position: absolute;
+	/*top: 177px;*/
+	/*left: 50%;*/
+	z-index: 1;
+	-webkit-transform: translate3d(-50%,0,0);
+	-moz-transform: translate3d(-50%,0,0);
+	-ms-transform: translate3d(-50%,0,0);
+	-o-transform: translate3d(-50%,0,0);
+	transform: translate3d(-50%,0,0);
+	height: 28px;
+	padding: 0 14px;
+	background: #48e588;
+	border-radius: 20px;
+	font-size: 12px;
+	line-height: 28px;
+	color: white;
+	text-align: center;
+	opacity: 0.9;
+	-webkit-transition: -webkit-transform 100ms ease-in-out;
+	-moz-transition: -moz-transform 100ms ease-in-out;
+	transition: transform 100ms ease-in-out;
+	margin-left: 71px;
+	margin-top: 109px;
+}
+
+
+#map_canvas {
+	width: 500px;
+	height: 500px;
+}
+
+
+#map {
+	width: 500px;
+	height: 500px;
+	float:right;
+}
+
+
+input[type=range] {
+	-webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+	width: 100%; /* Specific width is required for Firefox. */
+	background:rgba(109, 160, 195, 0.44); /* Otherwise white in Chrome */
+}
+
+
+
+
+[ng-cloak]{
+	display:none;
+}
+
+
+.form-control-inline {
+	min-width: 0;
+	width: auto;
+	display: inline;
+}
+
+
+table, th, td {
+	/*border: 3px solid black;*/
+}
+
+
+
+
+
+@keyframes blink {
+	0% {
+		background-color: rgba(255,0,0,1)
+	}
+	50% {
+		background-color: rgba(255,0,0,0.5)
+	}
+	100% {
+		background-color: rgba(255,0,0,1)
+	}
+}
+@-webkit-keyframes blink {
+	0% {
+		background-color: rgba(255,0,0,1)
+	}
+	50% {
+		background-color: rgba(255,0,0,0.5)
+	}
+	100% {
+		background-color: rgba(255,0,0,1)
+	}
+}
+
+.timeout {
+
+/*	padding: 15px 15px 15px 15px;
+	text-align:center;
+	margin-bottom: 4px;
+	font-size: 24px;
+	border-radius: 5px;*/
+	-moz-transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	transition:all 0.5s ease-in-out;
+	-moz-animation:blink normal 1.5s infinite ease-in-out;
+	/* Firefox */
+	-webkit-animation:blink normal 1.5s infinite ease-in-out;
+	/* Webkit */
+	-ms-animation:blink normal 1.5s infinite ease-in-out;
+	/* IE */
+	animation:blink normal 1.5s infinite ease-in-out;
+	/* Opera */
+}
+
+
+
+
+
+
+
+
+/*.timeout{
+	animation: blink-animation 3s steps(5, start) infinite;
+	-webkit-animation: blink-animation 3s steps(5, start) infinite;
+	background-color: rgba(255, 88, 88, 0.63);
+}
+@keyframes blink-animation {
+	to {
+		visibility: hidden;
+	}
+}
+@-webkit-keyframes blink-animation {
+	to {
+		visibility: hidden;
+	}
+
+
+}*/
+
+
+
+table.table.table-bordered.table-hover.table-stripped td{
+
+	border:3px solid rgba(255, 255, 255, 0.43) ;
+}
+
+table.table.table-bordered.table-hover.table-stripped th{
+
+	border:3px solid rgba(255, 255, 255, 0.43) ;
+}
+
+
+.aaaaa{
+
+
+	background-color: red;
+
+}
+
+
+.task.t_subject{
+	background-color: red;
+
+
+}
+
+.task-done {
+	background-color: #73ea7c;
+}
+
+/*.table {*/
+	/*!*width: 100%;*!*/
+	/*width: 200px;*/
+	/*margin-bottom: 24px;*/
+	/*background-color: #f3f3f3;*/
+	/*!*margin-left: 28%;*!*/
+/*}*/
+
+
+a.ng-scope {
+	float: left;
+	margin-left: 5%;
+}
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+	padding: 11px;
+	line-height: 1.428571;
+	vertical-align: top;
+	border-top: 2px solid #ffffff;
+}
+
+
+span.label.label-primary.ng-binding.ng-scope {
+
+	margin-right: 57%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+input[type=range] {
+	-webkit-appearance: none;
+	margin: 10px 0;
+	width: 56%;
+
+}
+input[type=range]:focus {
+	outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 12.8px;
+	cursor: pointer;
+	animate: 0.2s;
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	background: #ac51b5;
+	border-radius: 25px;
+	border: 0px solid #000101;
+}
+input[type=range]::-webkit-slider-thumb {
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	border: 0px solid #000000;
+	height: 20px;
+	width: 39px;
+	border-radius: 7px;
+	background: #65001c;
+	cursor: pointer;
+	-webkit-appearance: none;
+	margin-top: -3.6px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+	background: #ac51b5;
+}
+input[type=range]::-moz-range-track {
+	width: 100%;
+	height: 12.8px;
+	cursor: pointer;
+	animate: 0.2s;
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	background: #ac51b5;
+	border-radius: 25px;
+	border: 0px solid #000101;
+}
+input[type=range]::-moz-range-thumb {
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	border: 0px solid #000000;
+	height: 20px;
+	width: 39px;
+	border-radius: 7px;
+	background: #65001c;
+	cursor: pointer;
+}
+input[type=range]::-ms-track {
+	width: 100%;
+	height: 12.8px;
+	cursor: pointer;
+	animate: 0.2s;
+	background: transparent;
+	border-color: transparent;
+	border-width: 39px 0;
+	color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+	background: #ac51b5;
+	border: 0px solid #000101;
+	border-radius: 50px;
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+	background: #ac51b5;
+	border: 0px solid #000101;
+	border-radius: 50px;
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	border: 0px solid #000000;
+	height: 20px;
+	width: 39px;
+	border-radius: 7px;
+	background: #65001c;
+	cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+	background: #ac51b5;
+}
+input[type=range]:focus::-ms-fill-upper {
+	background: #ac51b5;
+}

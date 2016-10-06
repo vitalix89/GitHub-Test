@@ -1,0 +1,34 @@
+<div class="container" ng-cloak>
+
+    <div class="col-sm-6" style="margin-left: 25%;">
+
+        <h4>Your Registration Completed Successfully Log in Please!</h4>
+
+        <!--<form name="login" action="http://localhost:1234/CI3/Users/Login" method="post">-->
+
+        <h2>Login</h2>
+        <br/>
+        Email:<input type="text" style="width:60%;" class="form-control" ng-model="userlogin.u_email" name="u_email"  />
+        <br/>
+        Password:<input type="password" style="width:60%;" class="form-control" ng-model="userlogin.u_password" name="u_password" />
+        <br/>
+
+        <button class="btn btn-success" ng-click="loginUser()">Log-In</button>
+       <!--</form>-->
+
+    </div>
+
+    <tr ng-repeat="usersObj in users track by $index">
+        <td>{{users}}</td>
+
+    <tr ng-repeat="studobj in factory track by $index">
+        <td>{{factory}}</td>
+
+
+    <tr ng-repeat="studobj in students track by $index">
+        <td>{{students}}</td>
+
+
+</div>
+
+

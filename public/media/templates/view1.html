@@ -1,0 +1,38 @@
+<div class="container" style="margin:0px 100px 0px 500px;">
+    Name:<input type="text" ng-model="filter.name">
+    <br/>
+    <h1>Hide the DIV: <input type="checkbox" ng-model="myCheck"></h1>
+    <div ng-hide="myCheck">
+    <ul>
+        <!--| filter:filter.name | orderBy:'fname'-->
+        <li ng-repeat="friend in friends track by $index ">{{friend.firstname}} {{friend.lastname}}{{friend.gender}} {{friend.age}} <!-- {{friend}}--></li>
+    </ul>
+    </div>
+
+   <!--<div ng-show="friends">
+
+
+   {{friends.data[0]}}
+
+   </div>-->
+
+    <br/>
+    <fieldset style="width:200px;">
+        <legend>Add Friend</legend>
+        <form name="addcustomer" method="POST">
+            First Name:<input type="text" ng-model="newFriend.fname" name="firstname"/>
+            <br/>
+            Last Name :<input type="text" ng-model="newFriend.lname" name="lastname"/>
+            <br/>
+
+
+            gender:<input type="text" ng-model="newFriend.gender" name="gender"/>
+            <br/>
+            age :<input type="text" ng-model="newFriend.age" name="age"/>
+            <br/>
+
+            <button data-ng-click="addNewFriend()" name="add">Add Friend</button>
+        </form>
+    </fieldset>
+    <a href="#/view2" style="margin:auto;">Next</a>
+</div>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <style>
+            #chatScrn {
+                min-height: 500px;
+                overflow-y: scroll;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div id="chatScrn">
+                        chat screen</div>
+                    <div class="form-group">
+                        <label class="control-label" for="inputWarning1">send your text</label>
+                        <input type="text" class="form-control" id="chatText">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script>
+
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            var hh =today.getHours();
+            var mmm = today.getMinutes();
+            var ss = today.getSeconds();
+
+            //                        if(dd<10) {
+            //                            dd='0'+dd
+            //                        }
+            //
+            //                        if(mm<10) {
+            //                            mm='0'+mm
+            //                        }
+
+            today =  hh+':'+mmm;
+
+
+
+            if (!window.WebSocket) {
+                $('#chatScrn').text('browser not supported');
+            } else {
+                //open web socket
+                var ws = new WebSocket('ws://localhost:1337');
+                //on error, show error to the screen (debug mode)
+                ws.onerror = function(err) {
+                    $('#chatScrn').append('<pre>' + JSON.stringify(err, null, 4) + '</pre>')
+                }
+                //when connetion is opened
+                ws.onopen = function() {}
+                //when message arrived
+
+                ws.onmessage = function(msg) {
+                  //  console.log(msg)
+                    var username;
+                    var obj;
+                    try {
+                        obj = JSON.parse(msg.data);
+                        $('#chatScrn').append('<div>' + obj.text +'<span style="float:right;">'+today+'</span>' + '</div>')
+                      //  username = require('../modules/controllers/auth');
+                      //  console.log('suka');
+
+                        //console.log(username);
+
+                        $('#chatScrn div').last().css('color', '#' + obj.color);
+                    } catch (e) {
+                        console.log('Failed to parse response');
+                        $('#chatScrn').append('<pre>' + msg.data + '</pre>');
+                    }
+                }
+                $(document).ready(function() {
+                    jsonAjax('/chat/getuserdata/', 'POST', null, function(res) {
+
+
+                        $('#chatText').keyup(function(e) {
+                        e.preventDefault();
+                        var that =this
+                        //if the user had clicked on enter
+                        if (e.keyCode == 13/*Enter*!/ && that.value/!*the user entered any value already*/) {
+                          //  ws.send(this.value);
+                            //clear the text
+                            var text = that.value;
+                            that.value = '';
+
+                               // var shit =that;
+
+                                   console.log(text);
+
+                                ws.send(res.data.name+ ':' +' '+text)
+
+                            var jsonObj ={
+                                  u_id:res.data.u_id,
+                                  content:text
+
+                            }
+
+                            jsonAjax('/auth/messages_to_db/', 'POST', jsonObj, function(res) {
+
+
+
+
+                            });
+
+
+
+                        }
+                    });
+                });
+                });
+
+
+                function formToJson(formSelector) {
+                    var data = {};
+                    $(formSelector).serializeArray().map(function(x) {
+                        data[x.name] = x.value;
+                    });
+                    return data;
+                }
+
+
+                function jsonAjax(url, method, jsonObj, successCB) {
+                    $.ajax({
+                        type: method,
+                        url: url,
+                        data: jsonObj ? JSON.stringify(jsonObj) : null,
+                        contentType: "application/json; charset=UTF-8",
+                        datatype: "json",
+                        success: successCB,
+                        error: function() {
+
+                        }
+                    });
+                }
+
+
+
+            }
+        </script>
+    </body>
+</html>

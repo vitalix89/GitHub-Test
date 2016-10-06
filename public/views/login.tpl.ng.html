@@ -1,0 +1,82 @@
+<div class="container" ng-cloak>
+
+    {{check}}
+
+<!--{{name}}-->
+
+   <!-- <input class="input"  ng-model="name"  type="text" />-->
+
+<!--<div class="col-sm-10 col-sm-offset-1">
+    <div class="col-sm-6">
+        <div class="form-input">
+        <h2>Sign Up</h2>
+        First Name:<input type="text" class="form-control" ng-model="newFriend.u_first" name="u_first"/>
+        <br/>
+        Last Name :<input type="text" class="form-control" ng-model="newFriend.u_last" name="u_last"/>
+        <br/>
+
+        Email:<input type="text" class="form-control" ng-model="newFriend.u_email" name="u_email"/>
+        <br/>
+        gender:<input type="text" class="form-control" ng-model="newFriend.u_gender" name="u_gender"/>
+        <br/>
+        <input type="radio" ng-model="newFriend.u_gender" name="u_gender" value="male" checked> Male<br>
+        <input type="radio" ng-model="newFriend.u_gender" name="u_gender" value="female"> Female<br>
+        password:<input type="text" class="form-control" ng-model="newFriend.u_password" name="u_password"/>
+        <br/>
+        <button class="btn btn-default" ng-click="signUserUp()">Sign-Up</button>
+    </div>
+        </div>-->
+
+    <div class="col-sm-6" style="margin-left: 25%;">
+
+        <!--<form name="login" action="http://localhost:1234/CI3/Users/Login" method="post">-->
+
+        <h2>Login</h2>
+
+
+        <!--First Name:<input type="text" style="width:60%;" class="form-control" ng-model="newFriend2.u_first" name="u_first"/>-->
+
+
+        <br/>
+        Email:<input type="text" style="width:60%;" class="form-control" ng-model="userlogin.u_email" name="u_email"  />
+        <br/>
+        Password:<input type="password" style="width:60%;" class="form-control" ng-model="userlogin.u_password" name="u_password" />
+        <br/>
+
+        <button class="btn btn-success" ng-click="loginUser()">Log-In</button>
+
+        <span><a href="#/forgotemail">Forgot-Password?</a></span>
+       <!--</form>-->
+
+    </div>
+
+    <tr ng-repeat="usersObj in users track by $index">
+        <td>{{users}}</td>
+
+    <tr ng-repeat="studobj in factory track by $index">
+        <td>{{factory}}</td>
+
+
+    <tr ng-repeat="studobj in students track by $index">
+        <td>{{students}}</td>
+
+
+</div>
+
+
+
+<!--<input type="text" ng-model="first.greeting.message"/>
+
+
+<div ng-class="first.greeting.message">
+
+    {{first.greeting.message}} {{"world"}}
+
+</div>
+
+    <div>
+
+<div ui-sref="second">go to second</div>-->
+
+
+

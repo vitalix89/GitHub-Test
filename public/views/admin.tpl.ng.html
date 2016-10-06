@@ -1,0 +1,108 @@
+<button class="btn btn-danger" style="float: right;" ng-click="logout()"><span class="glyphicon glyphicon-off"></span><!--Log-out--></button>
+
+
+
+
+<h3>Hello Mr admim!</h3>
+
+
+<h4>your users</h4>
+
+
+
+<!--<li ng-repeat="admin in adminuser[0] track by $index">
+    {{admin.u_email}}
+&lt;!&ndash;    <td>{{ task.t_creation_date }}</td>
+    <td>{{task.t_due_date}}</td>&ndash;&gt;
+
+    </li>-->
+
+
+
+<table class="table table-bordered table-hover table-stripped">
+    <tr>
+        <th>u_id</th>
+        <th>u_email</th>
+        <th>u_first</th>
+        <th>u_last</th>
+        <th>u_gender</th>
+        <th>actions</th>
+    </tr>
+    <tr ng-repeat="admin in adminuser[0] track by $index">
+        <td>{{ admin.u_id }}</td>
+        <td>{{ admin.u_email }}</td>
+        <td>{{ admin.u_first }}</td>
+        <td>{{admin.u_last}}</td>
+        <td>{{admin.u_gender}}</td>
+
+        <td>
+            <!--
+                        <button class="btn btn-success"><a style="padding:5px;color: #ffffff;" href="#/tasksform/{{ task.t_id }}">edit</a></button>
+            -->
+
+<!--
+            <button class="btn btn-success" style="/*margin-left: 2px;margin-bottom: 7px;*/" ng-click="edituser(task.t_id)">Edit</button>
+-->
+            <button class="btn btn-danger" style="/*margin-left: 2px;margin-bottom: 7px;*/" ng-click="deleteuser(admin.u_id)">Delete</button>
+            <button class="btn btn-success" style="/*margin-left: 2px;margin-bottom: 7px;*/" ng-click="getusersTasks(admin.u_id)">Tasks</button>
+
+
+        </td>
+
+    </tr>
+</table>
+
+
+</br>
+</br>
+
+
+
+
+<h4>users tasks</h4>
+
+
+
+<!--<li ng-repeat="admintask in adminuser[1] track by $index">
+    {{admintask.t_subject}}
+    &lt;!&ndash;    <td>{{ task.t_creation_date }}</td>
+        <td>{{task.t_due_date}}</td>&ndash;&gt;
+
+</li>-->
+
+
+
+
+
+
+
+
+
+<table class="table table-bordered table-hover table-stripped">
+    <tr>
+        <th>t_id</th>
+        <th>task</th>
+        <!--<th>Created-on</th>-->
+        <th>Due-date</th>
+        <!--<th>actions</th>-->
+    </tr>
+    <tr ng-repeat="tasks in getusertask track by $index">
+        <td>{{ tasks.t_id }}</td>
+        <td>{{ tasks.t_subject }}</td>
+       <!-- <td>{{ tasks.t_creation_date }}</td>-->
+        <td>{{tasks.t_due_date}}</td>
+
+
+<!--        <td>
+            &lt;!&ndash;
+                        <button class="btn btn-success"><a style="padding:5px;color: #ffffff;" href="#/tasksform/{{ task.t_id }}">edit</a></button>
+            &ndash;&gt;
+
+            <button class="btn btn-success" style="/*margin-left: 2px;margin-bottom: 7px;*/" ng-click="editerTask(task.t_id)">Edit</button>
+            <button class="btn btn-danger" style="/*margin-left: 2px;margin-bottom: 7px;*/" ng-click="deleteTask($index,task.t_id)">Delete</button>
+
+
+        </td>-->
+
+    </tr>
+</table>

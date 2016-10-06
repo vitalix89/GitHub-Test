@@ -1,0 +1,28 @@
+<table class="table table-bordered table-hover table-stripped">
+    <tr>
+        <th>t_id</th>
+        <th>task</th>
+        <th>Created-on</th>
+        <th>Due-date</th>
+        <th>actions</th>
+    </tr>
+    <tr ng-repeat="tasks in getusertask track by $index">
+        <td>{{ tasks.t_id }}</td>
+        <td>{{ tasks.t_subject }}</td>
+        <td>{{ tasks.t_creation_date }}</td>
+        <td>{{tasks.t_due_date}}</td>
+
+
+        <td>
+            <!--
+                        <button class="btn btn-success"><a style="padding:5px;color: #ffffff;" href="#/tasksform/{{ task.t_id }}">edit</a></button>
+            -->
+
+            <button class="btn btn-success" style="/*margin-left: 2px;margin-bottom: 7px;*/" ng-click="editerTask(task.t_id)">Edit</button>
+            <button class="btn btn-danger" style="/*margin-left: 2px;margin-bottom: 7px;*/" ng-click="deleteTask($index,task.t_id)">Delete</button>
+
+
+        </td>
+
+    </tr>
+</table>

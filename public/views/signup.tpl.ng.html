@@ -1,0 +1,67 @@
+<div class="container" ng-controller="signupCtrl">
+   <div style="background-color: greenyellow"><h3 style="text-align: center;">{{check}}</h3></div>
+    <!--<a href="#/signup" ng-click="showme=true">Show</a>
+    <button ng-click="showme=false">Hide</button>-->
+
+<div class="col-sm-10 col-sm-offset-1"  style="margin-left: 21%;">
+
+    <div class="form-input" >
+    <div class="col-sm-6">
+
+<form name="userForm" >
+            <h2>Sign Up</h2>
+            First Name:<input type="text" class="form-control" ng-model="signupuser.u_first"  name="u_first"
+                              ng-minlength="5"
+                              ng-maxlength="8"
+                              required/>
+<!--
+          <h4 style="color:red;">{{errors.u_first}}</h4>
+-->
+
+              <p ng-show="userForm.u_first.$error.minlength">Username is too short.</p>
+
+              <p ng-show="userForm.u_first.$error.maxlength">Username is too long.</p>
+
+    <!-- show an error if this isn't filled in -->
+              <p ng-show="userForm.u_first.$error.required"></p>
+            <br/>
+
+            Last Name :<input type="text" class="form-control" ng-model="signupuser.u_last" name="u_last" required/>
+              <!--<h4 style="color:red;">{{errors.u_last}}</h4>-->
+    <p ng-show="userForm.u_last.$error.required"></p>
+
+    <br/>
+
+            Email:<input type="text" class="form-control" ng-model="signupuser.u_email" name="u_email" required/>
+              <h4 style="color:red;">{{errors.u_email}}</h4>
+    <p ng-show="userForm.u_email.$error.required"></p>
+
+    <br/>
+            gender:<input type="text" class="form-control" ng-model="signupuser.u_gender" name="u_gender" required/>
+              <!--<h4 style="color:red;">{{errors.u_gender}}</h4>-->
+    <p ng-show="userForm.u_gender.$error.required"></p>
+
+    <br/>
+            Male:  <input type="radio" ng-model="signupuser.u_gender" name="u_gender" value="male" checked required/>
+            Female: <input type="radio"  ng-model="signupuser.u_gender" name="u_gender" value="female"/>
+
+            <br/>
+            <br/>
+            password:<input type="password" class="form-control" ng-model="signupuser.u_password" name="u_password" required/>
+              <!--<h4 style="color:red;">  {{errors.u_password}}</h4>-->
+    <p ng-show="userForm.u_password.$error.required"></p>
+
+    <br/>
+
+            <button class="btn btn-success" ng-click="signUserUp()">Sign-Up</button>
+          <br/>
+
+       </form>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+

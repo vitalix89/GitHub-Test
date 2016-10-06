@@ -1,0 +1,31 @@
+{{ Tasks.t_subject }}
+{{ Tasks.t_id }}
+<!--
+<button style="float:right;" class="btn btn-danger" ng-click="logout()">logout</button>
+-->
+
+<button class="btn btn-danger" style="float: right;" ng-click="logout()"><span class="glyphicon glyphicon-off"></span><!--Log-out--></button>
+
+
+<div class="col-sm-10 col-sm-offset-1">
+    <div class="col-sm-6">
+        <h2>Edit-label</h2>
+        The_Task:<input class="form-control" type="text" ng-model="labels.lb_name" name="lb_name"/>
+        <br/>
+<!--
+        t_due_date :<input id="date" class="datepicker form-control" type="text"  ng-model="Tasks.t_due_date" name="t_due_date"/>
+-->
+        <br/>
+
+<!--
+        t_creation_date :<input class="datepicker form-control" type="date" ng-model="Tasks.t_creation_date" name="t_creation_date"/>
+-->
+
+        <br/>
+
+
+        <button class="btn btn-success" ng-click="editlabel(labels.lb_id)">editlabel</button>
+
+
+    </div>
+    </div>

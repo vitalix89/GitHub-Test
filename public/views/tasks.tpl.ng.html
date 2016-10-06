@@ -1,0 +1,238 @@
+
+<div  click-anywhere-but-here="hide_send_list()" style="width: 0px;">
+
+
+<!--
+    <button class="btn btn-danger" style="float: right;" ng-click="logout()"><span class="glyphicon glyphicon-off"></span>&lt;!&ndash;Log-out&ndash;&gt;</button>
+-->
+
+    <button class="btn btn-info" style="float: right;position: absolute;right: 8%;top: 3%;" ng-click="show_send_list()"  ng-class="{'alert-message': from }" ><span class="glyphicon glyphicon-envelope"></span><!--Log-out--></button>
+
+
+</br>
+
+</br>
+
+</br>
+
+
+    </br>
+
+
+    <div class="col-sm-6" ng-show="chat" ng-hide="close">
+
+
+
+
+
+        <div id="chater">
+            <span class="header"><img style="width:35px;height: 35px ;border-radius:35px;margin-right: 10px;color: hsl(0, 0%, 100%);" src="{{user_img}}"><h4 style="position: absolute; color: white;top: -4px;left: 41px;">{{user_name}}</h4></span>
+
+            <span class="close" ng-click="closechat()">x</span>
+
+
+
+
+            <form id="send_message">
+                <input class="inputM" type="text" ng-model="message" id="message1">
+                <button class ="button-send" ng-click="getmessage(message,$index)">send message</button>
+
+            </form>
+
+
+
+        </div>
+
+    </div>
+
+
+
+    </br>
+
+
+
+
+
+    </br>
+
+    </br>
+
+<div class="senders-list-wrapper"  ng-if="messages" ng-class="{'got-message': user.has_message }">
+
+    <!--<div>INBOX</div>-->
+
+<table class="table table-inverse" style="width: 240px; margin-bottom: 24px; background-color: #f3f3f3;border: 1px rgba(190, 184, 184, 0.93) solid;">
+
+    <tr ng-repeat="user in pizdets track by $index " ng-if="messages" ng-class="{'got-message': user.has_message }  " style="border-bottom: 3px rgba(32, 27, 19, 0.12) solid;" ng-click="edit(user.u_from,$index)"><!--ng-hide="user.on_message==true"--><!--| filter: { on_message: '1'}-->
+
+
+        <td style=""><!--<img ng-click="edit(user.u_from,$index)"  style="width:40px;height: 40px ;border-radius:40px;" ng-src="{{user.img}}" alt="{{ user.u_from_name }}" >--><span><!--{{ user.u_from_name }}--></span></td>
+
+
+        <td style="" ng-click="edit(user.u_from,$index)"><img ng-click="edit(user.u_from,$index)"  style="width:40px;height: 40px ;border-radius:40px;" ng-src="{{user.img}}" alt="{{ user.u_from_name }}" ><span style="float: right; /* margin-bottom: -3px; */ margin-top: 7px; margin-right: -15px;">{{ user.u_from_name }}</span></td>
+
+        <td></td>
+        <td style=""><!--{{user}}--></td>
+
+
+
+     <!--   <td>
+
+        </td>-->
+
+        <td>
+            <button ng-click="edit(user.u_from,$index)" ng-class="{'got-message': user.has_message }"><span class="glyphicon glyphicon-trash"></span></button><!--{'got-message': user.on_message==true,'from': user.u_from}-->
+        </td>
+
+        <td>
+
+        </td>
+
+    </tr>
+</table>
+
+</div>
+
+<!--</div>-->
+
+
+
+
+
+         <span  ng-repeat="user in pizdets track by $index "  ng-if="user.has_message" style="border-radius:23px ;position: absolute; right: 85px; top: 7px;width: 20px;" ng-class="{'alert-message': user.has_message }">+{{counter}}<!--ng-hide="user.on_message==true"--><!--| filter: { on_message: '1'}--></span>
+
+
+
+
+
+    <div>
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-sm-6">
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+<!--
+<div class="table table2-inverse" style="width: 240px; margin-bottom: 24px; background-color: #f3f3f3;">
+-->
+
+<div style="float:left;margin-left: 70px;">
+
+    <div ng-repeat="users in show_users track by $index " class="user_profile" ng-click="redirect_to_profile(users.u_id,$index)" style="width:240px;height:240px; background-color:hsl(174, 80%, 37%); float:left;margin-right: 81px;margin-top: 38px;border-radius: 8px;"><!--ng-hide="user.on_message==true"--><!--| filter: { on_message: '1'}-->
+
+
+<!--
+        <td style="">&lt;!&ndash;<img ng-click="edit(user.u_from,$index)"  style="width:40px;height: 40px ;border-radius:40px;" ng-src="{{user.img}}" alt="{{ user.u_from_name }}" >&ndash;&gt;<span>&lt;!&ndash;{{ user.u_from_name }}&ndash;&gt;</span></td>
+-->
+
+
+        <!--<td style="">--><img style="width:240px;height: 140px ;border-radius:4px;float: left;" ng-src="{{users.img}}" alt="{{ users.u_first }}" ><!--</td>-->
+
+        <span style=" /* margin-bottom: -3px; */ margin-top: 7px; margin-right: -15px;float: left;clear:left;">{{ users.u_first }}</span>
+
+        <span style=" /* margin-bottom: -3px; */ margin-top: 7px; margin-right: -15px;float: left;clear:left;">{{ users.place_name }}</span>
+
+
+        <!--
+                <td></td>
+        -->
+<!--
+        <td style="">&lt;!&ndash;{{user}}&ndash;&gt;</td>
+-->
+
+
+
+        <!--   <td>
+
+           </td>-->
+
+        <!--<td>-->
+            <!--<button ng-click="redirect_to_profile(users.u_id,$index)">profile</button>--><!--{'got-message': user.on_message==true,'from': user.u_from}-->
+       <!-- </td>-->
+
+        <!--<td>-->
+
+        <!--</td>-->
+
+    </div>
+
+</div>
+<!--
+</div>
+-->
+
+
+
+
+
+
+
+
+
+<!--<div ng-controller="tasksCtrl">
+
+
+<div class="col-sm-6" style="margin-left: 25%; margin-top:-20%">
+    &lt;!&ndash;&lt;!&ndash;longtitute:&ndash;&gt;&ndash;&gt;<input style="visibility: hidden" type="text"  class="form-control form-control-inline" style="/*visibility: hidden;*/" ng-model="longtitude" name="longtitude"  />
+    <br/>
+    &lt;!&ndash;&lt;!&ndash;latitude:&ndash;&gt;&ndash;&gt;<input style="visibility: hidden" type="text"  class="form-control form-control-inline" style="/*visibility: hidden;*/" ng-model="latitude" name="latitude" />
+    <br/>
+
+    <h3>distance in kilometers:</h3> <input  type="range" value="{{dist}}" name="points" min="1" max="500"  class="form-control form-control-inline" style="/*visibility: hidden;*/" ng-model="dist" />
+
+
+    <input  type="number" data-type="range" value="{{dist}}" name="points" min="1" max="500"  class="form-control form-control-inline" style="/*visibility: hidden;*/" ng-model="dist" />
+
+
+
+    <button class="btn btn-success" ng-click="updatecords(90,dist)">Send</button>
+
+</div>
+<br>
+
+<div class="col-sm-6" style="margin-left: 25%;" >
+
+    <div>people near you:</div>
+
+    <div  style="float:left; padding: 40px" ng-repeat="x in closeusers">{{x[0]}}-{{x[1]}}<a value="online" ng-show="x[3]==true" ng-class="{'online2': x[3]==true}">online&lt;!&ndash;{{x[3]}}&ndash;&gt;</a><br><img style="width:150px;height:150px" src="{{x[2]}}"/>
+
+    </div>
+
+
+
+</div>
+
+<div class="col-sm-6" style="margin-left: 25%;">
+
+
+
+
+</div>
+
+<br>
+
+&lt;!&ndash;&lt;!&ndash;&ndash;&gt;
+
+<br>
+
+<div style="display: none;" id="map_canvas"></div>
+<div  style="display: none;" id="map"></div>
+&lt;!&ndash;&lt;!&ndash;<input id="findMe" type="button" value="find closest place">&ndash;&gt;
+
+&lt;!&ndash;<input class="find" type="button" value="find closest place">&ndash;&gt;&ndash;&gt;
+<div  style="display: none;" id="map-canvas" style="height:300px;"></div>
+
+
+</div>&ndash;&gt;-->
+
+

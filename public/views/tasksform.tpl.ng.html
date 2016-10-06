@@ -1,0 +1,262 @@
+
+<div data-ng-controller="tasksCtrl">
+
+
+
+
+    <div  click-anywhere-but-here="hide_send_list()" style="width: 0px;">
+
+
+        <!--
+            <button class="btn btn-danger" style="float: right;" ng-click="logout()"><span class="glyphicon glyphicon-off"></span>&lt;!&ndash;Log-out&ndash;&gt;</button>
+        -->
+
+        <button class="btn btn-info" style="float: right;position: absolute;right: 8%;top: 3%;" ng-click="show_send_list()"  ng-class="{'alert-message': from }" ><span class="glyphicon glyphicon-envelope"></span><!--Log-out--></button>
+
+
+        </br>
+
+        </br>
+
+        </br>
+
+
+        </br>
+
+
+        <div class="col-sm-6" ng-show="chat" ng-hide="close">
+
+
+
+
+
+            <div id="chater">
+                <span class="header"><img style="width:35px;height: 35px ;border-radius:35px;margin-right: 10px;" src="{{user_img}}">{{user_name}}</span>
+
+                <span class="close" ng-click="closechat()">x</span>
+
+
+
+
+                <form id="send_message">
+                    <input class="inputM" type="text" ng-model="message" id="message1">
+                    <button class ="button-send" ng-click="getmessage(message,$index)">send message</button>
+
+                </form>
+
+
+
+            </div>
+
+        </div>
+
+
+
+        </br>
+
+
+
+
+
+        </br>
+
+        </br>
+
+        <div class="senders-list-wrapper"  ng-if="messages" ng-class="{'got-message': user.has_message }">
+
+            <table class="table table-inverse" style="width: 240px; margin-bottom: 24px; background-color: #f3f3f3;">
+
+                <tr ng-repeat="user in pizdets track by $index " ng-if="messages" ng-class="{'got-message': user.has_message }  " ng-click="edit(user.u_from,$index)"><!--ng-hide="user.on_message==true"--><!--| filter: { on_message: '1'}-->
+
+
+                    <td style=""><!--<img ng-click="edit(user.u_from,$index)"  style="width:40px;height: 40px ;border-radius:40px;" ng-src="{{user.img}}" alt="{{ user.u_from_name }}" >--><span><!--{{ user.u_from_name }}--></span></td>
+
+
+                    <td style="" ng-click="edit(user.u_from,$index)"><img ng-click="edit(user.u_from,$index)"  style="width:40px;height: 40px ;border-radius:40px;" ng-src="{{user.img}}" alt="{{ user.u_from_name }}" ><span style="float: right; /* margin-bottom: -3px; */ margin-top: 7px; margin-right: -15px;">{{ user.u_from_name }}</span></td>
+
+                    <td></td>
+                    <td style=""><!--{{user}}--></td>
+
+
+
+                    <!--   <td>
+
+                       </td>-->
+
+                    <td>
+                        <button ng-click="edit(user.u_from,$index)" ng-class="{'got-message': user.has_message }">chat</button><!--{'got-message': user.on_message==true,'from': user.u_from}-->
+                    </td>
+
+                    <td>
+
+                    </td>
+
+                </tr>
+            </table>
+
+        </div>
+
+        <!--</div>-->
+
+
+
+
+
+        <span  ng-repeat="user in pizdets track by $index "  ng-if="user.has_message" style="border-radius:23px ;position: absolute; right: 85px; top: 7px;width: 20px;" ng-class="{'alert-message': user.has_message }">+{{counter}}<!--ng-hide="user.on_message==true"--><!--| filter: { on_message: '1'}--></span>
+
+
+
+
+
+        <div>
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="col-sm-6">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!--<table class="table table2-inverse" style="width: 240px; margin-bottom: 24px; background-color: #f3f3f3;">
+
+        <tr ng-repeat="users in show_users track by $index ">&lt;!&ndash;ng-hide="user.on_message==true"&ndash;&gt;&lt;!&ndash;| filter: { on_message: '1'}&ndash;&gt;
+
+
+            <td style="">&lt;!&ndash;<img ng-click="edit(user.u_from,$index)"  style="width:40px;height: 40px ;border-radius:40px;" ng-src="{{user.img}}" alt="{{ user.u_from_name }}" >&ndash;&gt;<span>&lt;!&ndash;{{ user.u_from_name }}&ndash;&gt;</span></td>
+
+
+            <td style=""><img style="width:40px;height: 40px ;border-radius:40px;" ng-src="{{users.img}}" alt="{{ users.u_first }}" ><span style="float: right; /* margin-bottom: -3px; */ margin-top: 7px; margin-right: -15px;">{{ users.u_first }}</span></td>
+
+            <td></td>
+            <td style="">&lt;!&ndash;{{user}}&ndash;&gt;</td>
+
+
+
+            &lt;!&ndash;   <td>
+
+               </td>&ndash;&gt;
+
+            <td>
+                <button ng-click="redirect_to_profile(users.u_id,$index)">profile</button>&lt;!&ndash;{'got-message': user.on_message==true,'from': user.u_from}&ndash;&gt;
+            </td>
+
+            <td>
+
+            </td>
+
+        </tr>
+    </table>
+-->
+
+
+
+<div style="position: absolute;width: 100%; right:0;">
+
+<!--<table class="table table2-inverse" style="width: 240px; margin-bottom: 24px; background-color: #f3f3f3;">-->
+
+    <div ng-repeat="profile in user_profile track by $index " class="navbar navbar-default ng-scope"  style="position: relative;
+  width: 100%;
+  height: 137px;
+
+  /*left: 0;*/
+ background-color:hsla(332, 100%, 31%, 0.95) ;
+  top: -160px;
+ /* z-index: 100;*/
+  border-top: 0;/*width:100%;height:20%; background-color:whitesmoke; float:left;margin-right: 81px;margin-top: -100px;border-radius: 8px;*/"><!--ng-hide="user.on_message==true"--><!--| filter: { on_message: '1'}-->
+
+
+<!--
+        <td style="">&lt;!&ndash;<img ng-click="edit(user.u_from,$index)"  style="width:40px;height: 40px ;border-radius:40px;" ng-src="{{user.img}}" alt="{{ user.u_from_name }}" >&ndash;&gt;<span>&lt;!&ndash;{{ user.u_from_name }}&ndash;&gt;</span></td>
+-->
+
+
+        <!--<td style="">--><img style="width:140px;height: 140px ;border-radius:95px;position: absolute;left: 71px;top: 30px;" ng-src="{{profile.img}}" alt="{{ profile.u_first }}" ><!--</td>-->
+
+        <span style="/*float: right;*/ /* margin-bottom: -3px; */ position: absolute;left: 233px;top: 37px;color: hsl(0, 0%, 100%);"><h3>{{ profile.u_first }}</h3><h4>{{ profile.place_name }}</h4></span>
+
+<!--
+        <td></td>
+-->
+<!--
+        <td style="">&lt;!&ndash;{{user}}&ndash;&gt;</td>
+-->
+
+
+
+        <!--   <td>
+
+           </td>-->
+
+<!--
+        <td>
+-->
+            <button class="btn btn-info" ng-click="edit(profile.u_id,$index)" style="float: right;margin-top: 65px;margin-right: 100px;">message</button><!--{'got-message': user.on_message==true,'from': user.u_from}-->
+<!--
+        </td>
+-->
+
+        <!--<td>-->
+
+<!--
+        </td>
+-->
+
+    </div>
+<!--</table>-->
+
+</div>
+
+
+
+
+
+
+
+<div class="col-sm-6" ng-show="chat" ng-hide="close">
+
+
+
+
+
+    <div id="chater">
+        <span class="header"><img style="width:35px;height: 35px ;border-radius:35px;margin-right: 10px;" src="{{user_img}}"><h4 style="position: absolute; color: white;top: -4px;left: 41px;">{{user_name}}</h4></span>
+
+        <span class="close" ng-click="closechat()">x</span>
+
+
+
+
+        <form id="send_message">
+            <input class="inputM" type="text" ng-model="message" id="message1">
+            <button class ="button-send" ng-click="getmessage(message,$index)">send message</button>
+
+        </form>
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+

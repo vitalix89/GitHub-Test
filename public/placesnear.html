@@ -1,0 +1,367 @@
+<html>
+<head>
+    <style>
+        #map_canvas {
+            width: 500px;
+            height: 500px;
+        }
+
+
+        #map {
+            width: 500px;
+            height: 500px;
+            float:right;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+
+<!--    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?libraries=geometry,places&sensor=false"></script>-->
+
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-OaXYTpkxQ9CKVAYv5p-6Bc-Lr7U2Ic&libraries=geometry,places&sensor=false"></script>
+
+
+<!--
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=geometry"></script>
+-->
+
+    <!-- <script async defer
+             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-OaXYTpkxQ9CKVAYv5p-6Bc-Lr7U2Ic&callback=initMap">
+     </script>-->
+
+
+    <!--
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&libraries=place‌s"></script>
+    -->
+
+
+    <script>
+
+        jQuery(function($){
+
+            var $overlay = $('.overlay'),
+                resize = true,
+                map;
+        var service;
+        var marker = [];
+        var pos;
+        var infowindow;
+        var placeLoc
+
+
+        console.log($('#findMe'));
+
+
+
+        function initialize() {
+
+            //$('#findMe').hide();
+            /*var mapOptions = {
+             zoom: 8,
+             center: new google.maps.LatLng(-34.397, 150.644),
+             mapTypeId: google.maps.MapTypeId.ROADMAP
+             };
+             map = new google.maps.Map(document.getElementById('map-canvas'),
+             mapOptions);
+
+             }*/
+            var mapOptions = {
+                zoom: 15
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+
+            // Try HTML5 geolocation
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+
+                    showPosition(position)
+
+                    var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+
+                    $('#findMe').data('pos',pos);
+                    var request = {
+                        location:pos,
+                        radius:1000
+
+                    };
+
+                    infowindow = new google.maps.InfoWindow();
+                    var service = new google.maps.places.PlacesService(map);
+
+                    console.log(service)
+                    service.nearbySearch(request,callback);
+
+
+                    infowindow = new google.maps.InfoWindow({
+                        map: map,
+                        position: pos,
+                        content: 'You Are Here'
+                    });
+
+
+                    map.setCenter(pos);
+                }, function() {
+                    handleNoGeolocation(true);
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleNoGeolocation(false);
+            }
+
+
+
+
+
+
+            function showPosition(position) {
+                console.log("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
+
+
+                var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+
+
+                var po = new google.maps.LatLng(32.085300,34.781768);
+
+                var connection = [{
+                    lat: 31.804381,
+                    long: 34.655314
+                },{
+                    lat: 31.788877,
+                    long: 34.756172
+                }];
+
+                //connection.push(coords)
+
+                var request = {
+                    location:pos,
+                    radius:1000
+
+                };
+
+
+               // connection.nearbySearch(request,callback);
+
+
+
+
+                $( ".find" ).click(function(event) {
+
+
+
+                    event.preventDefault()
+
+
+
+                //connection = $(this).data('connection');
+
+
+                    $.each(connection,function(){
+                        var distance=google.maps.geometry.spherical
+                                .computeDistanceBetween(po,pos);
+                        if(!closest || closest.distance > distance){
+                            closest={marker:this,
+                                distance:distance}
+
+
+                        }
+                        console.log(distance)
+                    });
+                    if(closest){
+                        //closest.marker will be the nearest marker, do something with it
+                        //here we simply trigger a click, which will open the InfoWindow
+                        google.maps.event.trigger(closest.marker,'click')
+
+                        console.log(closest)
+                    }
+
+
+
+
+
+
+
+                console.log(connection);
+
+                });
+
+                var distance=google.maps.geometry.spherical
+                        .computeDistanceBetween(po,pos);
+
+
+
+                console.log(distance)
+
+             /*   $.each(connection,function(){
+                    var distance=google.maps.geometry.spherical
+                            .computeDistanceBetween(this.getPosition(),pos);
+                    if(!closest || closest.distance > distance){
+                        closest={marker:this,
+                            distance:distance}
+
+
+                    }
+                    console.log(distance)
+                });*/
+
+
+                for (var i = 0; i < connection.length; i++) {
+
+                    $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng= ' + connection[i].lat + ' ,' + connection[i].long + ' &sensor=true', null, function (data) {
+
+                        console.log(data)
+
+
+                        var p = data.results[0].geometry.location
+                        var latlng = new google.maps.LatLng(p.lat, p.lng);
+
+                        console.log(latlng);
+                        var markerA= new google.maps.Marker({
+                            position: latlng,
+                            map: map
+                            //customInfo: "Marker A",
+
+                        });
+
+
+
+                        console.log(markerA);
+
+                        google.maps.event.addListener(markerA, 'click', function() {
+                            console.log(this.position.lat());
+                        });
+
+                    });
+
+
+
+                    // })
+                }
+
+
+            }
+
+
+
+            function callback(results, status) {
+
+                console.log(results);
+                var markers = [];
+                if (status == google.maps.places.PlacesServiceStatus.OK) {
+                    for (var i = 0; i < results.length; i++) {
+                        markers.push(createMarker(results[i]));
+
+                    }
+                }
+                $('#findMe').data('markers',markers);
+            }
+        }
+
+        function createMarker(place) {
+            placeLoc = place.geometry.location;
+            var marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 8,
+                    fillColor:'00a14b',
+                    fillOpacity:0.3,
+                    fillStroke: '00a14b',
+                    strokeWeight:4,
+                    strokeOpacity: 0.7
+                },
+
+
+
+            });
+
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+            });
+            return marker;
+        }
+
+        function handleNoGeolocation(errorFlag) {
+            if (errorFlag) {
+                var content = 'Error: The Geolocation service failed.';
+            } else {
+                var content = 'Error: Your browser doesn\'t support geolocation.';
+            }
+
+            var options = {
+                map: map,
+                position: new google.maps.LatLng(60, 105),
+                content: content
+            };
+
+            var infowindow = new google.maps.InfoWindow(options);
+            map.setCenter(options.position);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+        $('#show').click(function(){
+
+            $overlay.show();
+
+            if ( resize ){
+                google.maps.event.trigger(map, 'resize');
+                resize = false;
+            }
+
+        });
+
+        $('.overlay-bg').click(function(){
+
+            $overlay.hide();
+
+        });
+
+        $( "#findMe" ).click(function() {
+
+            var pos     = $(this).data('pos'),
+                    markers = $(this).data('markers'),
+                    closest;
+
+            console.log(markers)
+
+            if(!pos || !markers){
+                alert('pos or markers not set yet');return;
+            }
+
+            $.each(markers,function(){
+                var distance=google.maps.geometry.spherical
+                        .computeDistanceBetween(this.getPosition(),pos);
+                if(!closest || closest.distance > distance){
+                    closest={marker:this,
+                        distance:distance}
+
+
+                }
+                console.log(distance)
+            });
+            if(closest){
+                //closest.marker will be the nearest marker, do something with it
+                //here we simply trigger a click, which will open the InfoWindow
+                google.maps.event.trigger(closest.marker,'click')
+
+                console.log(closest)
+            }
+        });
+        });
+    </script>
+</head>
+<body>
+<div id="map_canvas"></div>
+<div id="map"></div>
+<input id="findMe" type="button" value="find closest place">
+
+<input class="find" type="button" value="find closest place">
+<div id="map-canvas" style="height:300px;"></div>
+</body>
+</html>
