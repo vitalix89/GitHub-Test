@@ -5,7 +5,7 @@ var mysqlModule = require('mysql');
 var _con = mysqlModule.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'fh98hfeh98f3hf3FH%$#',
     database: 'todo_app'
 });
 // take care on general errors
