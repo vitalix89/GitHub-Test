@@ -20,7 +20,7 @@ server.listen(8080);
 
 var bodyParser = require('body-parser');
 //get connection, set into global so all the controllers would be able to use it
-GLOBAL.con = require('./modules/db.js');
+global.con = require('./modules/db.js');
 var session = require('express-session');
 
 // expose the static content folder
